@@ -39,15 +39,15 @@ echo '<img width="100px" src="../exhibitions/'.$row["id"].'.jpg?' , time() , '" 
 <input type="hidden" name="action" value="upload" />
 <input type="hidden" name="exhibition" value="<?=$row["id"]?>" />
 <input type="file" name="user_file" />
-<input type="image" src="../icone/upload.png" onclick="submit();" />
+<input type="image" src="<?=$config['admin_icons_dir']?>/upload.png" onclick="submit();" />
 </form>
 </td>
 <td align="center">
-<input type="image" src="../icone/update.png" onclick="window.location='updateExhibition.php?topic=<?=$topic_id?>&exhibition=<?=$row["id"]?>';" />
+<input type="image" src="<?=$config['admin_icons_dir']?>/update.png" onclick="window.location='updateExhibition.php?topic=<?=$topic_id?>&exhibition=<?=$row["id"]?>';" />
 </td>
-<td align="center"><input type="image" src="../icone/delete.png" onclick="if(confirm('Delete exhibition <?=addslashes(str_replace("\"", "&quot;", $row["title"]))?>?')) window.location='delExhibition.php?topic=<?=$topic_id?>&exhibition=<?=$row["id"]?>';"/></td>
-<td align="center"><a href="downExhibition.php?exhibition=<?=$row["id"]?>"><img src="../icone/up.png" /></a></td>
-<td align="center"><a href="upExhibition.php?exhibition=<?=$row["id"]?>"><img src="../icone/down.png" /></a></td>
+<td align="center"><input type="image" src="<?=$config['admin_icons_dir']?>/delete.png" onclick="if(confirm('Delete exhibition <?=addslashes(str_replace("\"", "&quot;", $row["title"]))?>?')) window.location='delExhibition.php?topic=<?=$topic_id?>&exhibition=<?=$row["id"]?>';"/></td>
+<td align="center"><a href="downExhibition.php?exhibition=<?=$row["id"]?>"><img src="<?=$config['admin_icons_dir']?>/up.png" /></a></td>
+<td align="center"><a href="upExhibition.php?exhibition=<?=$row["id"]?>"><img src="<?=$config['admin_icons_dir']?>/down.png" /></a></td>
 </tr>
 <?php
 }
@@ -60,9 +60,8 @@ echo '<img width="100px" src="../exhibitions/'.$row["id"].'.jpg?' , time() , '" 
 <br/>
 <textarea name="description">Description</textarea>
 <br/>
-<input type="image" onclick="submit();" src="../icone/add.png" />
+<input type="image" onclick="submit();" src="<?=$config['admin_icons_dir']?>/add.png" />
 </form>
 </div>
-
 <?php include("footer.php");?>
 

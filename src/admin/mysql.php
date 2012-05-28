@@ -1,11 +1,6 @@
 <?php
-# connessione al database
-$host = "127.0.0.1";   
-$user = "basic";
-$pass = "darkaelf";
-$dbname = "phxibit";
-
-$connessione = mysql_connect($host,$user,$pass);
-$selezione = mysql_select_db($dbname,$connessione) or die (mysql_error());
+$config = parse_ini_file('../config/config.ini');
+$conn = mysql_connect($config['mysql_host'],$config['mysql_user'],$config['mysql_pass']) or die (mysql_error());
+mysql_select_db($config['mysql_db'],$conn) or die (mysql_error());
 mysql_query("SET CHARACTER SET utf8");
 ?>

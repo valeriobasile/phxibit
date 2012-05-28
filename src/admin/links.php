@@ -27,11 +27,11 @@ while ($row = mysql_fetch_assoc($result)){
 <td><?=$row["description"]?></td>
 <td><a href="<?=$row["url"]?>" target="_blank"><?=$row["url"]?></a></td>
 <td align="center">
-<input type="image" src="../icone/update.png" onclick="window.location='updateLink.php?topic=<?=$topic_id?>&link=<?=$row["id"]?>';" />
+<input type="image" src="<?=$config['admin_icons_dir']?>/update.png" onclick="window.location='updateLink.php?topic=<?=$topic_id?>&link=<?=$row["id"]?>';" />
 </td>
-<td align="center"><input type="image" src="../icone/delete.png" onclick="if(confirm('Delete link <?=addslashes(str_replace("\"", "&quot;", $row["url"]))?>?')) window.location='delLink.php?link=<?=$row["id"]?>';"/></td>
-<td align="center"><a href="downLink.php?link=<?=$row["id"]?>"><img src="../icone/up.png" /></a></td>
-<td align="center"><a href="upLink.php?link=<?=$row["id"]?>"><img src="../icone/down.png" /></a></td>
+<td align="center"><input type="image" src="<?=$config['admin_icons_dir']?>/delete.png" onclick="if(confirm('Delete link <?=addslashes(str_replace("\"", "&quot;", $row["url"]))?>?')) window.location='delLink.php?link=<?=$row["id"]?>';"/></td>
+<td align="center"><a href="downLink.php?link=<?=$row["id"]?>"><img src="<?=$config['admin_icons_dir']?>/up.png" /></a></td>
+<td align="center"><a href="upLink.php?link=<?=$row["id"]?>"><img src="<?=$config['admin_icons_dir']?>/down.png" /></a></td>
 </tr>
 <?php
 }
@@ -44,7 +44,7 @@ while ($row = mysql_fetch_assoc($result)){
 <br/>
 <textarea name="description">Description</textarea>
 <br/>
-<input type="image" onclick="submit();" src="../icone/add.png" />
+<input type="image" onclick="submit();" src="<?=$config['admin_icons_dir']?>/add.png" />
 </form>
 </div>
 

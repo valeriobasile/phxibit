@@ -1,11 +1,6 @@
-	
-	<div id="footer">
-		<div id="bootomLine"><img src="img/bigLine.jpg" width="1000" height="3">
-		</div>
-	  <div id="info">Copyright &copy; 2012 | Katharina Dieckhoff | Tutti i diritti riservati<br>
-	    T. (+39) 339 7946646 | <a href="mailto:mail@katharinadieckhoff.com">mail@katharinadieckhoff.com
-	    </a><br />
-	    Site by Sara Barcena</br></div>
-	</div>
+<div id="footer">
+PHXibit is <a href="http://www.fsf.org/">Free Software</a> |
+<a href="https://github.com/valeriobasile/phxibit">Developer's page</a>
+</div>
 </body>
 </html>

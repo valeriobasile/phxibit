@@ -21,10 +21,10 @@ while ($row = mysql_fetch_assoc($result)){
 ?>
 <tr>
 <td><a href="publications.php?category=<?=$row["id"]?>"><?=$row["name"]?></a></td>
-<td align="center"><input type="image" src="../icone/update.png" onclick="window.location='updateCategory.php?category=<?=$row["id"]?>';"/></td>
-<td align="center"><input type="image" src="../icone/delete.png" onclick="if(confirm('Delete category <?=addslashes(str_replace("\"", "&quot;", $row["name"]))?>?')) window.location='delCategory.php?category=<?=$row["id"]?>';"/></td>
-<td align="center"><a href="downCategory.php?category=<?=$row["id"]?>"><img src="../icone/up.png" /></a></td>
-<td align="center"><a href="upCategory.php?category=<?=$row["id"]?>"><img src="../icone/down.png" /></a></td>
+<td align="center"><input type="image" src="<?=$config['admin_icons_dir']?>/update.png" onclick="window.location='updateCategory.php?category=<?=$row["id"]?>';"/></td>
+<td align="center"><input type="image" src="<?=$config['admin_icons_dir']?>/delete.png" onclick="if(confirm('Delete category <?=addslashes(str_replace("\"", "&quot;", $row["name"]))?>?')) window.location='delCategory.php?category=<?=$row["id"]?>';"/></td>
+<td align="center"><a href="downCategory.php?category=<?=$row["id"]?>"><img src="<?=$config['admin_icons_dir']?>/up.png" /></a></td>
+<td align="center"><a href="upCategory.php?category=<?=$row["id"]?>"><img src="<?=$config['admin_icons_dir']?>/down.png" /></a></td>
 </tr>
 <?php
 }
@@ -35,7 +35,7 @@ while ($row = mysql_fetch_assoc($result)){
 <form action="addCategory.php" method="post">
 <input id="textbox" type="text" name="name" len="100" value="New category" />
 <br/>
-<input type="image" onclick="submit();" src="../icone/add.png" />
+<input type="image" onclick="submit();" src="<?=$config['admin_icons_dir']?>/add.png" />
 </form>
 </div>
 
@@ -94,16 +94,16 @@ echo '<img width="100px" src="../publications/'.$category_id.'-'.$row["id"].'.jp
 <input type="hidden" name="category" value="<?=$category_id?>" />
 <input type="hidden" name="publication" value="<?=$row["id"]?>" />
 <input type="file" name="user_file" />
-<input type="image" src="../icone/upload.png" onclick="submit();" />
+<input type="image" src="<?=$config['admin_icons_dir']?>/upload.png" onclick="submit();" />
 </form>
 </td>
 <td><?=$row["text"]?></td>
 <td align="center">
-<input type="image" src="../icone/update.png" onclick="window.location='updatePublication.php?category=<?=$category_id?>&publication=<?=$row["id"]?>';" />
+<input type="image" src="<?=$config['admin_icons_dir']?>/update.png" onclick="window.location='updatePublication.php?category=<?=$category_id?>&publication=<?=$row["id"]?>';" />
 </td>
-<td align="center"><input type="image" src="../icone/delete.png" onclick="if(confirm('Delete publication <?=addslashes(str_replace("\"", "&quot;", $row["title"]))?>?')) window.location='delPublication.php?category=<?=$category_id?>&publication=<?=$row["id"]?>';"/></td>
-<td align="center"><a href="downPublication.php?category=<?=$category_id?>&publication=<?=$row["id"]?>"><img src="../icone/up.png" /></a></td>
-<td align="center"><a href="upPublication.php?category=<?=$category_id?>&publication=<?=$row["id"]?>"><img src="../icone/down.png" /></a></td>
+<td align="center"><input type="image" src="<?=$config['admin_icons_dir']?>/delete.png" onclick="if(confirm('Delete publication <?=addslashes(str_replace("\"", "&quot;", $row["title"]))?>?')) window.location='delPublication.php?category=<?=$category_id?>&publication=<?=$row["id"]?>';"/></td>
+<td align="center"><a href="downPublication.php?category=<?=$category_id?>&publication=<?=$row["id"]?>"><img src="<?=$config['admin_icons_dir']?>/up.png" /></a></td>
+<td align="center"><a href="upPublication.php?category=<?=$category_id?>&publication=<?=$row["id"]?>"><img src="<?=$config['admin_icons_dir']?>/down.png" /></a></td>
 </tr>
 <?php
 }
@@ -119,7 +119,7 @@ echo '<img width="100px" src="../publications/'.$category_id.'-'.$row["id"].'.jp
 <br/>
 <textarea name="text">Text</textarea>
 <br/>
-<input type="image" onclick="submit();" src="../icone/add.png" />
+<input type="image" onclick="submit();" src="<?=$config['admin_icons_dir']?>/add.png" />
 </form>
 </div>
 <?

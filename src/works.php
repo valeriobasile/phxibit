@@ -1,42 +1,6 @@
 <?php
 include("header.php");
 include("mysql.php");
-?>
-
-
-<?php
-if (isset($_GET["topic"]))
-	$id_topic = $_GET["topic"];
-else
-	$id_topic = 1;
-
-if (isset($_GET["work"]))
-	$id_work = $_GET["work"];
-else
-	$id_work = 1;
-
-$sql = "select count(id) as count from work where topic = ".$id_topic.";";
-$result = mysql_query($sql) or die (mysql_error());
-$row = mysql_fetch_assoc($result);
-$count_works = $row["count"];
-
-# find last topic
-$sql = "select max(id) as max from topic;";
-$result = mysql_query($sql) or die (mysql_error());
-$row = mysql_fetch_assoc($result);
-$last_topic = $row["max"];
-
-# find last work
-$sql = "select max(id) as max from work where topic=".$last_topic.";";
-$result = mysql_query($sql) or die (mysql_error());
-$row = mysql_fetch_assoc($result);
-$last_work = $row["max"];
-
-# find last work in topic
-$sql = "select max(id) as max from work where topic=".$id_topic.";";
-$result = mysql_query($sql) or die (mysql_error());
-$row = mysql_fetch_assoc($result);
-$last_work_in_topic = $row["max"];
 
 
 function get_next_topic($id_topic, $id_work, $last_work_in_topic){
@@ -76,10 +40,55 @@ function get_prev_work($id_work, $last_topic){
 		return $id_work - 1 ;
 }
 
+if (isset($_GET["topic"]))
+	$id_topic = $_GET["topic"];
+else
+	$id_topic = 1;
+
+if (isset($_GET["work"]))
+	$id_work = $_GET["work"];
+else
+	$id_work = 1;
+
+$sql = "select count(id) as count from work where topic = ".$id_topic.";";
+$result = mysql_query($sql) or die (mysql_error());
+$row = mysql_fetch_assoc($result);
+$count_works = $row["count"];
+
+# find last topic
+$sql = "select max(id) as max from topic;";
+$result = mysql_query($sql) or die (mysql_error());
+$row = mysql_fetch_assoc($result);
+$last_topic = $row["max"];
+
+# if there is no topics don't go on
+if ($last_topic == ""){
+?>
+This content is empty
+<?
+}
+else {
+    # find last work
+    $sql = "select max(id) as max from work where topic=".$last_topic.";";
+    $result = mysql_query($sql) or die (mysql_error());
+    $row = mysql_fetch_assoc($result);
+    $last_work = $row["max"];
+    if ($last_work == ""){
+?>
+This content is empty
+<?
+    }
+    else {
+        # find last work in topic
+        $sql = "select max(id) as max from work where topic=".$id_topic.";";
+        $result = mysql_query($sql) or die (mysql_error());
+        $row = mysql_fetch_assoc($result);
+        $last_work_in_topic = $row["max"];
+
+
 # menu topic
 ?>
-<div id="contentMenu">
-<div id="menu">
+<div id="works_menu">
 <ul>
 <?
 $sql = "select * from topic order by id;";
@@ -104,10 +113,9 @@ while ($row = mysql_fetch_assoc($result)){
 </li>
 </ul>
 </div>
-</div>
 
 <? #foto work ?>
-<div id="contentBoxL">
+<div id="work">
 <?
 // get Vimeo URL
 $sql = "select vimeo_url from work where topic = $id_topic and id = ".$id_work.";";
@@ -118,9 +126,7 @@ $vimeo_url = $row["vimeo_url"];
 // if there is no Vimeo URL, then show picture
 if ($vimeo_url == ""){
 ?>
-<a href="works.php?topic=<?=get_next_topic($id_topic, $id_work, $last_work_in_topic)?>&work=<?=get_next_work($id_work, $last_work_in_topic);?>">
-<img src="<?=$DIR_PICTURES.$id_topic."-".$id_work.".jpg"?>" />
-</a>
+<img src="<?=$config['works_dir'].'/'.$id_topic."-".$id_work.".jpg"?>" />
 <?
 }
 // if there is a Vimeo URL, then show embedded player
@@ -133,10 +139,10 @@ else {
 ?>
 </div>
 
-<div id="contentBoxR">
+<div id="works_navigation">
 
 <? # description topic ?>
-<div id="descripTopic">
+<div id="works_navigation_topic">
 <?
 $sql = "select description from topic where id = ".$id_topic.";";
 $result = mysql_query($sql) or die (mysql_error());
@@ -145,21 +151,21 @@ echo str_replace("\n", "<br />\n", $row["description"]);
 ?>
 </div>
 
-<? # frecce di navigazione ?>
-<div id="arrows">
+<? # navigation ?>
+<div id="works_navigation_arrows">
 <?
 
 #first topic, first work
 if($id_topic=="1" && $id_work=="1"){
 ?>
-<img src="icone/prev.png" />
-prev
+<img src="<?=$config['img_dir'].'/'.$config['icon_prev']?>" />
+<?=$config['text_previous']?>
 <?=$id_work?>/<?=$count_works?>
 <a href="works.php?topic=<?=get_next_topic($id_topic, $id_work, $last_work_in_topic)?>&work=<?=get_next_work($id_work, $last_work_in_topic);?>">
-next
+<?=$config['text_next']?>
 </a>
 <a href="works.php?topic=<?=get_next_topic($id_topic, $id_work, $last_work_in_topic)?>&work=<?=get_next_work($id_work, $last_work_in_topic);?>">
-<img src="icone/next.png" />
+<img src="<?=$config['img_dir'].'/'.$config['icon_next']?>" />
 </a>
 
 <?
@@ -168,15 +174,14 @@ next
 elseif($id_topic==$last_topic && $id_work==$last_work){
 ?>
 <a href="works.php?topic=<?=get_prev_topic($id_topic, $id_work)?>&work=<?=get_prev_work($id_work, $id_topic)?>">
-<img src="icone/prev.png" />
+<img src="<?=$config['img_dir'].'/'.$config['icon_prev']?>" />
 </a>
 <a href="works.php?topic=<?=get_prev_topic($id_topic, $id_work)?>&work=<?=get_prev_work($id_work, $id_topic)?>">
-prev
+<?=$config['text_prev']?>
 </a>
 <?=$id_work?>/<?=$count_works?>
-
-next
-<img src="icone/next.png" />
+<?=$config['text_next']?>
+<img src="<?=$config['img_dir'].'/'.$config['icon_next']?>" />
 <?
 }
 
@@ -184,29 +189,28 @@ next
 else{
 ?>
 <a href="works.php?topic=<?=get_prev_topic($id_topic, $id_work)?>&work=<?=get_prev_work($id_work, $id_topic)?>">
-<img src="icone/prev.png" />
+<img src="<?=$config['img_dir'].'/'.$config['icon_prev']?>" />
 </a>
 <a href="works.php?topic=<?=get_prev_topic($id_topic, $id_work)?>&work=<?=get_prev_work($id_work, $id_topic)?>">
-prev
+<?=$config['text_prev']?>
 </a>
 <?=$id_work?>/<?=$count_works?>
 <a href="works.php?topic=<?=get_next_topic($id_topic, $id_work, $last_work_in_topic)?>&work=<?=get_next_work($id_work, $last_work_in_topic);?>">
-next
+<?=$config['text_next']?>
 </a>
 <a href="works.php?topic=<?=get_next_topic($id_topic, $id_work, $last_work_in_topic)?>&work=<?=get_next_work($id_work, $last_work_in_topic);?>">
-<img src="icone/next.png" />
+<img src="<?=$config['img_dir'].'/'.$config['icon_next']?>" />
 </a>
 
 <?
 }
 ?>
 
-
 </div>
 
 
 <? # title work ?>
-<div id="titleWork">
+<div id="works_navigation_title">
 <?
 $sql = "select title from work where id = ".$id_work." and topic = ".$id_topic.";";
 $result = mysql_query($sql) or die (mysql_error());
@@ -216,7 +220,7 @@ echo $row["title"];
 </div>
 
 <? # description work ?>
-<div id="descripWork">
+<div id="works_navigation_description">
 <?
 $sql = "select description from work where id = ".$id_work." and topic = ".$id_topic.";";
 $result = mysql_query($sql) or die (mysql_error());
@@ -227,8 +231,8 @@ echo str_replace("\n", "<br />\n", $row["description"]);
 
 </div>
 
-
-
 <?php
+    }
+}
 include("footer.php");
 ?>
