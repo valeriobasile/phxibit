@@ -86,8 +86,8 @@ mysql_pass = getpass("MySQL password: ")
 mysql_db = raw_input("MySQL database: ")
 '''
 mysql_host = "vicious"
-mysql_user = "basic"
-mysql_pass = "darkaelf"
+mysql_user = "myuser"
+mysql_pass = "mypass"
 mysql_db = "phxibit"
 
 sql_fd = open(SQL_FILE, "r")
