@@ -35,8 +35,8 @@ ftp_dir = raw_input("FTP directory: [/] ")
 ftp_dir = ftp_dir or "/" # default FTP directory is /
 '''
 ftp_host = "vicious"
-ftp_user = "basic"
-ftp_pass = "darkaelf"
+ftp_user = "myuser"
+ftp_pass = "mypass"
 ftp_dir = "/var/www/phxibit"
 
 try:
