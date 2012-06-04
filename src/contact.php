@@ -4,7 +4,7 @@ include("mysql.php");
 ?>
 <div id="contact">
 <?php
-include($config['static_dir']."/".$config['contacts_file']);
+include($config['static_dir']."/".$config['contact_file']);
 ?>
 </div>
 <?php

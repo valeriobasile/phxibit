@@ -1,6 +1,9 @@
 <?php
 $config = parse_ini_file('../config/config.ini');
+session_start();
+include("login.php");
 header( 'Content-Type: text/html; charset=UTF-8' );
+
 //Set no caching
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); 
@@ -25,6 +28,7 @@ include("mysql.php");
 <a href="exhibitions.php">exhibitions</a>
 <a href="publications.php">publications</a>
 <a href="links.php">links</a>
-</div>
+<a href="static.php">static content</a>
+<a href="pages.php">active pages</a></div>
 <div id="main">
 

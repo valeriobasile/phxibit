@@ -3,6 +3,13 @@ $config = parse_ini_file('config/config.ini');
 include("mysql.php");
 header( 'Content-Type: text/html; charset=UTF-8' );
 mb_internal_encoding( 'UTF-8' );
+
+$sql = "select id, active from page;";
+$result = mysql_query($sql) or die (mysql_error());
+$show = array();
+while ($row = mysql_fetch_assoc($result)){
+	$show[$row["id"]] = $row["active"];
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -20,12 +27,24 @@ mb_internal_encoding( 'UTF-8' );
 		</a>
 		</div>
 		<div id="navigation">
+		    <?if ($show['biography']){?>
 		    <a href="biography.php">biography</a>
+            <?}?> 
+		    <?if ($show['works']){?>
 		    <a href="works.php">works</a>
+            <?}?> 
+		    <?if ($show['exhibitions']){?>
 		    <a href="exhibitions.php">exhibitions</a>
+            <?}?> 
+		    <?if ($show['publications']){?>
 		    <a href="publications.php">publications</a>
+            <?}?> 
+		    <?if ($show['links']){?>
 		    <a href="links.php">links</a>
+            <?}?> 
+		    <?if ($show['contact']){?>
 		    <a href="contact.php">contact</a>
+            <?}?> 
 		</div>
 	</div>
 	<div id="content">

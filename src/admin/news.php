@@ -8,7 +8,7 @@ $row = mysql_fetch_assoc($result);
 $text = $row["text"];
 $link = $row["link"];
 ?>
-<form action="confirmUpdateNews.php" method="post" />
+<form action="confirmUpdateNews.php" method="post" >
 <textarea name="text"><?=$text?></textarea>
 <br/>
 <input type="text" name="link" value="<?=$link?>" />
