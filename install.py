@@ -27,17 +27,11 @@ SQL_FILE = "create_schema.sql"
 SRC_DIR = "src"
 
 # FTP configuration
-'''
 ftp_host = raw_input("FTP host: ")
 ftp_user = raw_input("FTP username: ")
 ftp_pass = getpass("FTP password: ")
 ftp_dir = raw_input("FTP directory: [/] ")
 ftp_dir = ftp_dir or "/" # default FTP directory is /
-'''
-ftp_host = "vicious"
-ftp_user = "basic"
-ftp_pass = "darkaelf"
-ftp_dir = "/var/www/phxibit"
 
 try:
     ftp = ftplib.FTP(ftp_host)
@@ -79,16 +73,10 @@ for (local_dir, _,local_files) in os.walk(SRC_DIR):
 sys.exit(0)
 
 # Database configuration (MySQL)
-'''
 mysql_host = raw_input("MySQL host: ")
 mysql_user = raw_input("MySQL username: ")
 mysql_pass = getpass("MySQL password: ")
 mysql_db = raw_input("MySQL database: ")
-'''
-mysql_host = "vicious"
-mysql_user = "basic"
-mysql_pass = "darkaelf"
-mysql_db = "phxibit"
 
 sql_fd = open(SQL_FILE, "r")
 sql = sql_fd.read()
