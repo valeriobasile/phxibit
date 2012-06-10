@@ -10,8 +10,8 @@ else
 <div id="exhibitions">
 <?
 $sql = "select * from exhibition order by id;";
-$result = mysql_query($sql) or die (mysql_error());
-while ($row = mysql_fetch_assoc($result)){
+$result = $dbh->query($sql);
+while ($row = $result->fetch()){
 ?>
 <div id="exhibition">
     <img src="<?=$config['exhibitions_dir']?>/<?=$row['id']?>.jpg" />

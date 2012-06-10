@@ -1,6 +1,6 @@
 <?php
 include("header.php");
-include("mysql.php");
+include("db.php");
 
 
 function get_next_topic($id_topic, $id_work, $last_work_in_topic){
@@ -31,8 +31,8 @@ function get_prev_work($id_work, $last_topic){
 	if($id_work == "1"){
 		$tmp = $last_topic-1;
 		$sql = "select max(id) as max from work where topic=".$tmp.";";
-		$result = mysql_query($sql) or die (mysql_error());
-		$row = mysql_fetch_assoc($result);
+		$result = $dbh->query($sql);
+		$row = $result->fetch();
 		$prev_work = $row["max"];
 		return $prev_work;
 	}
@@ -51,14 +51,14 @@ else
 	$id_work = 1;
 
 $sql = "select count(id) as count from work where topic = ".$id_topic.";";
-$result = mysql_query($sql) or die (mysql_error());
-$row = mysql_fetch_assoc($result);
+$result = $dbh->query($sql);
+$row = $result->fetch();
 $count_works = $row["count"];
 
 # find last topic
 $sql = "select max(id) as max from topic;";
-$result = mysql_query($sql) or die (mysql_error());
-$row = mysql_fetch_assoc($result);
+$result = $dbh->query($sql);
+$row = $result->fetch();
 $last_topic = $row["max"];
 
 # if there is no topics don't go on
@@ -70,8 +70,8 @@ This content is empty
 else {
     # find last work
     $sql = "select max(id) as max from work where topic=".$last_topic.";";
-    $result = mysql_query($sql) or die (mysql_error());
-    $row = mysql_fetch_assoc($result);
+    $result = $dbh->query($sql);
+    $row = $result->fetch();
     $last_work = $row["max"];
     if ($last_work == ""){
 ?>
@@ -81,8 +81,8 @@ This content is empty
     else {
         # find last work in topic
         $sql = "select max(id) as max from work where topic=".$id_topic.";";
-        $result = mysql_query($sql) or die (mysql_error());
-        $row = mysql_fetch_assoc($result);
+        $result = $dbh->query($sql);
+        $row = $result->fetch();
         $last_work_in_topic = $row["max"];
 
 
@@ -92,8 +92,8 @@ This content is empty
 <ul>
 <?
 $sql = "select * from topic order by id;";
-$result = mysql_query($sql) or die (mysql_error());
-while ($row = mysql_fetch_assoc($result)){
+$result = $dbh->query($sql);
+while ($row = $result->fetch()){
 ?>
 <li>
 <?
@@ -119,8 +119,8 @@ while ($row = mysql_fetch_assoc($result)){
 <?
 // get Vimeo URL
 $sql = "select vimeo_url from work where topic = $id_topic and id = ".$id_work.";";
-$result = mysql_query($sql) or die (mysql_error());
-$row = mysql_fetch_assoc($result);
+$result = $dbh->query($sql);
+$row = $result->fetch();
 $vimeo_url = $row["vimeo_url"];
 
 // if there is no Vimeo URL, then show picture
@@ -145,8 +145,8 @@ else {
 <div id="works_navigation_topic">
 <?
 $sql = "select description from topic where id = ".$id_topic.";";
-$result = mysql_query($sql) or die (mysql_error());
-$row = mysql_fetch_assoc($result);
+$result = $dbh->query($sql);
+$row = $result->fetch();
 echo str_replace("\n", "<br />\n", $row["description"]);
 ?>
 </div>
@@ -159,7 +159,7 @@ echo str_replace("\n", "<br />\n", $row["description"]);
 if($id_topic=="1" && $id_work=="1"){
 ?>
 <img src="<?=$config['img_dir'].'/'.$config['icon_prev']?>" />
-<?=$config['text_previous']?>
+<?=$config['text_prev']?>
 <?=$id_work?>/<?=$count_works?>
 <a href="works.php?topic=<?=get_next_topic($id_topic, $id_work, $last_work_in_topic)?>&work=<?=get_next_work($id_work, $last_work_in_topic);?>">
 <?=$config['text_next']?>
@@ -213,8 +213,8 @@ else{
 <div id="works_navigation_title">
 <?
 $sql = "select title from work where id = ".$id_work." and topic = ".$id_topic.";";
-$result = mysql_query($sql) or die (mysql_error());
-$row = mysql_fetch_assoc($result);
+$result = $dbh->query($sql);
+$row = $result->fetch();
 echo $row["title"];
 ?>
 </div>
@@ -223,8 +223,8 @@ echo $row["title"];
 <div id="works_navigation_description">
 <?
 $sql = "select description from work where id = ".$id_work." and topic = ".$id_topic.";";
-$result = mysql_query($sql) or die (mysql_error());
-$row = mysql_fetch_assoc($result);
+$result = $dbh->query($sql);
+$row = $result->fetch();
 echo str_replace("\n", "<br />\n", $row["description"]);
 ?>
 </div>

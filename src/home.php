@@ -1,14 +1,14 @@
 <?php
 include("header.php");
-include("mysql.php");
+include("db.php");
 ?>
 
 		<div id="imgHome">
 			<div id="news">
 <?
 $sql = "select * from news;";
-$result = mysql_query($sql) or die (mysql_error());
-$row = mysql_fetch_assoc($result);
+$result = $dbh->query($sql);
+$row = $result->fetch();
 $text = $row["text"];
 $link = $row["link"];
 ?>

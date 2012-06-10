@@ -1,13 +1,13 @@
 <?php
 $config = parse_ini_file('config/config.ini');
-include("mysql.php");
+include("db.php");
 header( 'Content-Type: text/html; charset=UTF-8' );
 mb_internal_encoding( 'UTF-8' );
 
 $sql = "select id, active from page;";
-$result = mysql_query($sql) or die (mysql_error());
+$result = $dbh->query($sql);
 $show = array();
-while ($row = mysql_fetch_assoc($result)){
+while ($row = $result->fetch()){
 	$show[$row["id"]] = $row["active"];
 }
 ?>
@@ -42,7 +42,7 @@ while ($row = mysql_fetch_assoc($result)){
 		    <?if ($show['links']){?>
 		    <a href="links.php">links</a>
             <?}?> 
-		    <?if ($show['contact']){?>
+		    <?if ($show['contacts']){?>
 		    <a href="contact.php">contact</a>
             <?}?> 
 		</div>

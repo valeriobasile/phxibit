@@ -1,6 +1,6 @@
 <?php
 include("header.php");
-include("mysql.php");
+include("db.php");
 ?>
 <div id="contact">
 <?php

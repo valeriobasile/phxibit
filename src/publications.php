@@ -27,8 +27,8 @@ function get_next_publication($id_publication, $last_publication_in_category){
 function get_prev_publication($id_publication, $last_category){
 	if($id_publication == "1"){
 		$sql = "select max(id) as max from publication where category=".$last_category."-1;";
-		$result = mysql_query($sql) or die (mysql_error());
-		$row = mysql_fetch_assoc($result);
+		$result = $dbh->query($sql);
+		$row = $result->fetch();
 		$prev_publication = $row["max"];
 		return $prev_publication;
 	}
@@ -47,14 +47,14 @@ else
 	$id_publication = 1;
 
 $sql = "select count(id) as count from publication where category = ".$id_category.";";
-$result = mysql_query($sql) or die (mysql_error());
-$row = mysql_fetch_assoc($result);
+$result = $dbh->query($sql);
+$row = $result->fetch();
 $count_publications = $row["count"];
 
 # find last category
 $sql = "select max(id) as max from category;";
-$result = mysql_query($sql) or die (mysql_error());
-$row = mysql_fetch_assoc($result);
+$result = $dbh->query($sql);
+$row = $result->fetch();
 $last_category = $row["max"];
 
 # if there is no publication don't go on
@@ -66,8 +66,8 @@ This content is empty
 else {
     # find last publication
     $sql = "select max(id) as max from publication where category=".$last_category.";";
-    $result = mysql_query($sql) or die (mysql_error());
-    $row = mysql_fetch_assoc($result);
+    $result = $dbh->query($sql);
+    $row = $result->fetch();
     $last_publication = $row["max"];
     
     if ($last_publication == ""){
@@ -78,8 +78,8 @@ else {
     else {
         # find last publication in category
         $sql = "select max(id) as max from publication where category=".$id_category.";";
-        $result = mysql_query($sql) or die (mysql_error());
-        $row = mysql_fetch_assoc($result);
+        $result = $dbh->query($sql);
+        $row = $result->fetch();
         $last_publication_in_category = $row["max"];
 
 # menu category
@@ -88,8 +88,8 @@ else {
 	<ul>
 	<?
 	$sql = "select * from category order by id;";
-	$result = mysql_query($sql) or die (mysql_error());
-	while ($row = mysql_fetch_assoc($result)){
+	$result = $dbh->query($sql);
+	while ($row = $result->fetch()){
 	?>
 	<li>
 	    <a href="publications.php?category=<?=$row["id"]?>"><?=$row["name"]?></a>
@@ -105,8 +105,8 @@ else {
 <?
 if ($id_category=="3") {
 	$sql = "select title from publication where id = ".$id_publication." and category = ".$id_category.";";
-	$result = mysql_query($sql) or die (mysql_error());
-	$row = mysql_fetch_assoc($result);
+	$result = $dbh->query($sql);
+	$row = $result->fetch();
 	echo $row["title"];
 }
 ?>
@@ -115,8 +115,8 @@ if ($id_category=="3") {
 <br />
 <?
 $sql = "select text from publication where id = ".$id_publication." and category = ".$id_category.";";
-$result = mysql_query($sql) or die (mysql_error());
-$row = mysql_fetch_assoc($result);
+$result = $dbh->query($sql);
+$row = $result->fetch();
 
 echo str_replace("\n", "<br />\n", $row["text"]);
 ?>
@@ -187,8 +187,8 @@ else{
 <div id="publication_navigation_title">
 <?
 $sql = "select title from publication where id = ".$id_publication." and category = ".$id_category.";";
-$result = mysql_query($sql) or die (mysql_error());
-$row = mysql_fetch_assoc($result);
+$result = $dbh->query($sql);
+$row = $result->fetch();
 echo $row["title"];
 ?>
 </div>
@@ -197,8 +197,8 @@ echo $row["title"];
 <div id="publication_navigation_description">
 <?
 $sql = "select description from publication where id = ".$id_publication." and category = ".$id_category.";";
-$result = mysql_query($sql) or die (mysql_error());
-$row = mysql_fetch_assoc($result);
+$result = $dbh->query($sql);
+$row = $result->fetch();
 $description = $row["description"];
 echo str_replace("\n", "<br />\n", $description);
 ?>
