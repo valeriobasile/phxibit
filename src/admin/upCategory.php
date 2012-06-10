@@ -1,11 +1,11 @@
-<?php include("mysql.php");?>
+<?php include("db.php");?>
 <?php
 if (isset($_GET["category"])){
 	$id = $_GET["category"];
 
 	$sql = "select max(id) as max_id from category;";
-	$result = mysql_query($sql);
-	$row = mysql_fetch_array($result);
+	$result = $dbh->query($sql);
+	$row = $result->fetch();
 	$max_id = $row["max_id"];
 
 	if ($id < $max_id){
@@ -13,9 +13,9 @@ if (isset($_GET["category"])){
 
 		# 0 is used as temp id
 		$sql = "update category set id = 0 where id = ".$id.";";
-		mysql_query($sql) or die (mysql_error());
+		$dbh->query($sql);
 		$sql = "update publication set category = 0 where category = ".$id.";";
-		mysql_query($sql) or die (mysql_error());
+		$dbh->query($sql);
 
 		$files = glob("../publications/".$id."-*.jpg");
 		foreach ($files as $file){
@@ -25,9 +25,9 @@ if (isset($_GET["category"])){
 		}
 
 		$sql = "update category set id = ".$id." where id = ".$new_id.";";
-		mysql_query($sql) or die (mysql_error());
+		$dbh->query($sql);
 		$sql = "update publication set category = ".$id." where category = ".$new_id.";";
-		mysql_query($sql) or die (mysql_error());
+		$dbh->query($sql);
 
 		$files = glob("../publications/".$new_id."-*.jpg");
 		foreach ($files as $file){
@@ -37,9 +37,9 @@ if (isset($_GET["category"])){
 		}
 
 		$sql = "update category set id = ".$new_id." where id = 0;";
-		mysql_query($sql) or die (mysql_error());
+		$dbh->query($sql);
 		$sql = "update publication set category = ".$new_id." where category = 0;";
-		mysql_query($sql) or die (mysql_error());
+		$dbh->query($sql);
 
 		$files = glob("../publications/0-*.jpg");
 		foreach ($files as $file){
@@ -49,6 +49,6 @@ if (isset($_GET["category"])){
 		}
 	}
 }
-mysql_close();
+$dbh = null;
 header("location:publications.php");
 ?>

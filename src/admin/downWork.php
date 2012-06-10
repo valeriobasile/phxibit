@@ -1,4 +1,4 @@
-<?php include("mysql.php");?>
+<?php include("db.php");?>
 <?php
 if (isset($_GET["topic"]) && isset($_GET["work"])){
 	$id_topic = $_GET["topic"];
@@ -10,19 +10,19 @@ if (isset($_GET["topic"]) && isset($_GET["work"])){
 
 		# 0 is used as temp id
 		$sql = "update work set id = 0 where topic = ".$id_topic." and id = ".$id_work.";";
-		mysql_query($sql) or die (mysql_error());
+		$dbh->query($sql);
 		rename($picture_dir.$id_topic."-".$id_work.".jpg", $picture_dir.$id_topic."-0.jpg");
 		
 		$sql = "update work set id = ".$id_work." where topic = ".$id_topic." and id = ".$new_id.";";
-		mysql_query($sql) or die (mysql_error());
+		$dbh->query($sql);
 		rename($picture_dir.$id_topic."-".$new_id.".jpg", $picture_dir.$id_topic."-".$id_work.".jpg");
 
 		$sql = "update work set id = ".$new_id." where topic = ".$id_topic." and id = 0;";
-		mysql_query($sql) or die (mysql_error());
+		$dbh->query($sql);
 		rename($picture_dir.$id_topic."-0.jpg", $picture_dir.$id_topic."-".$new_id.".jpg");
 	}
 }
-mysql_close();
+$dbh = null;
 //Set no caching
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); 

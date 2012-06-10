@@ -5,8 +5,8 @@
 <form action="confirmUpdatePages.php" method="post" >
 <?php
 $sql = "select id, active from page;";
-$result = mysql_query($sql) or die (mysql_error());
-while ($row = mysql_fetch_assoc($result)){
+$result = $dbh->query($sql);
+while ($row = $result->fetch()){
     
     if ($row["active"]==1) {
 ?>

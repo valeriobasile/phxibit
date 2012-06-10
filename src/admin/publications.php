@@ -1,7 +1,7 @@
 <?php include("header.php");?>
 <?php
 $sql = "select * from category order by id;";
-$result = mysql_query($sql) or die (mysql_error());
+$result = $dbh->query($sql);
 ?>
 <div class="box">
 <h1>Category</h1>
@@ -17,7 +17,7 @@ $result = mysql_query($sql) or die (mysql_error());
 </thead>
 <tbody>
 <?php
-while ($row = mysql_fetch_assoc($result)){
+while ($row = $result->fetch()){
 ?>
 <tr>
 <td><a href="publications.php?category=<?=$row["id"]?>"><?=$row["name"]?></a></td>
@@ -43,8 +43,8 @@ while ($row = mysql_fetch_assoc($result)){
 
 if (isset($_GET["category"])){
 	$sql = "select name from category where id = \"".$_GET["category"]."\";";
-	$result = mysql_query($sql) or die (mysql_error());
-	$row = mysql_fetch_assoc($result);
+	$result = $dbh->query($sql);
+	$row = $result->fetch();
 	$category_id = $_GET["category"];
 	$category_name = $row["name"];
 }
@@ -55,7 +55,7 @@ else{
 
 if ($category_name != ""){
 $sql = "select id, title, description, text from publication where category = ".$category_id." order by id;";
-$result = mysql_query($sql) or die (mysql_error());
+$result = $dbh->query($sql);
 ?>
 <div class="box">
 <h1>publications</h1>
@@ -76,7 +76,7 @@ $result = mysql_query($sql) or die (mysql_error());
 </thead>
 <tbody>
 <?php
-while ($row = mysql_fetch_assoc($result)){
+while ($row = $result->fetch()){
 ?>
 <tr>
 <td><?=$row["title"]?></td>

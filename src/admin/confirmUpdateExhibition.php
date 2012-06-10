@@ -1,11 +1,11 @@
-<?php include("mysql.php");?>
+<?php include("db.php");?>
 <?
 $id = $_POST["id"];
 $title = $_POST["title"];
 $description = $_POST["description"];
 
 $sql = "update exhibition set title = '".$title."', description = '".$description."' where id = ".$id.";";
-$result = mysql_query($sql) or die (mysql_error());
+$result = $dbh->query($sql);
 header("location:exhibitions.php");	
-mysql_close();
+$dbh = null;
 ?>

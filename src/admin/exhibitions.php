@@ -4,7 +4,7 @@
 
 
 $sql = "select id, title, description from exhibition order by id;";
-$result = mysql_query($sql) or die (mysql_error());
+$result = $dbh->query($sql);
 ?>
 <div class="box">
 <h1>Exhibitions</h1>
@@ -23,7 +23,7 @@ $result = mysql_query($sql) or die (mysql_error());
 </thead>
 <tbody>
 <?php
-while ($row = mysql_fetch_assoc($result)){
+while ($row = $result->fetch()){
 ?>
 <tr>
 <td><?=$row["title"]?></td>

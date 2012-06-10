@@ -1,4 +1,4 @@
-<?php include("mysql.php");?>
+<?php include("db.php");?>
 <?php
 
 if (isset($_POST["topic"])){
@@ -26,15 +26,15 @@ else {
 }
 
 $sql = "select max(id) as max_id from work where topic = ".$id_topic.";";
-$result = mysql_query($sql) or die (mysql_error());
-$row = mysql_fetch_assoc($result);
+$result = $dbh->query($sql);
+$row = $result->fetch();
 $max_id = $row["max_id"];
 $new_id = $max_id + 1;
 
 $sql = "insert into work(id, topic, title, description, vimeo_url) values (\"".$new_id."\", \"".$id_topic."\", \"".$name."\", \"".$description."\", \"".$vimeo_url."\");";
-$result = mysql_query($sql) or die (mysql_error());
+$result = $dbh->query($sql);
 
-mysql_close();
+$dbh = null;
 
 $picture_dir = "../works/";
 copy($picture_dir."dummy.jpg", $picture_dir.$id_topic."-".$new_id.".jpg");

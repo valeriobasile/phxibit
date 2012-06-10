@@ -1,4 +1,4 @@
-<?php include("mysql.php");?>
+<?php include("db.php");?>
 <?php
 
 if (isset($_POST["category"])){
@@ -26,15 +26,15 @@ else {
 }
 
 $sql = "select max(id) as max_id from publication where category = ".$id_category.";";
-$result = mysql_query($sql) or die (mysql_error());
-$row = mysql_fetch_assoc($result);
+$result = $dbh->query($sql);
+$row = $result->fetch();
 $max_id = $row["max_id"];
 $new_id = $max_id + 1;
 
 $sql = "insert into publication(id, category, title, description, text) values (\"".$new_id."\", \"".$id_category."\", \"".$name."\", \"".$description."\", \"".$text."\");";
-$result = mysql_query($sql) or die (mysql_error());
+$result = $dbh->query($sql);
 
-mysql_close();
+$dbh = null;
 
 $picture_dir = "../publications/";
 copy($picture_dir."dummy.jpg", $picture_dir.$id_category."-".$new_id.".jpg");

@@ -1,26 +1,26 @@
-<?php include("mysql.php");?>
+<?php include("db.php");?>
 <?php
 if (isset($_GET["category"])){
 	$id = $_GET["category"];
 
 	$sql = "delete from category where id = ".$id.";";
-	mysql_query($sql) or die (mysql_error());
+	$dbh->query($sql);
 	
 	$sql = "delete from publication where category = ".$id.";";
-	mysql_query($sql) or die (mysql_error());
+	$dbh->query($sql);
 	
 	$files = glob("../publications/".$id."-*.jpg");
 	array_map('unlink', $files);
 
 	$sql = "select id from category where id > ".$id." order by id;";
-	$result = mysql_query($sql) or die (mysql_error());
-	while ($row = mysql_fetch_assoc($result)){
+	$result = $dbh->query($sql);
+	while ($row = $result->fetch()){
 		$old_id = $row["id"];
 		$new_id = $row["id"] - 1;
 		$sql = "update category set id = ".$new_id." where id = ".$old_id.";";
-		mysql_query($sql) or die (mysql_error());
+		$dbh->query($sql);
 		$sql = "update publication set category = ".$new_id." where category = ".$old_id.";";
-		mysql_query($sql) or die (mysql_error());
+		$dbh->query($sql);
 		
 		$files = glob("../publications/".$old_id."-*.jpg");
 		foreach ($files as $file){
@@ -31,8 +31,8 @@ if (isset($_GET["category"])){
 	}
 
 	$sql = "select id from category where id = ".$id." order by id;";
-	$result = mysql_query($sql) or die (mysql_error());
-	$row = mysql_fetch_assoc($result);
+	$result = $dbh->query($sql);
+	$row = $result->fetch();
 	$old_id = $row["id"];
 	$new_id = $row["id"] - 1;
 
@@ -44,6 +44,6 @@ if (isset($_GET["category"])){
 	}
 
 }
-mysql_close();
+$dbh = null;
 header("location:publications.php");
 ?>

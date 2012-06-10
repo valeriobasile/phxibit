@@ -5,8 +5,8 @@ if (isset($_GET["category"]) && isset($_GET["publication"])){
 	$id_publication = $_GET["publication"];
 
 	$sql = "select * from publication where category = ".$id_category." and id = ".$id_publication.";";
-	$result = mysql_query($sql) or die (mysql_error());
-	$row = mysql_fetch_assoc($result);
+	$result = $dbh->query($sql);
+	$row = $result->fetch();
 	$title = $row["title"];
 	$description = $row["description"];
 	$text = $row["text"];

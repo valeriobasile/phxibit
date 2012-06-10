@@ -4,8 +4,8 @@ if (isset($_GET["exhibition"])){
 	$id = $_GET["exhibition"];
 
 	$sql = "select * from exhibition where id = ".$id.";";
-	$result = mysql_query($sql) or die (mysql_error());
-	$row = mysql_fetch_assoc($result);
+	$result = $dbh->query($sql);
+	$row = $result->fetch();
 	$title = $row["title"];
 	$description = $row["description"];
 ?>

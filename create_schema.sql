@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `category`
 --
 
+DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL,
   `name` text NOT NULL,
@@ -38,6 +39,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 -- Table structure for table `exhibition`
 --
 
+DROP TABLE IF EXISTS `exhibition`;
 CREATE TABLE IF NOT EXISTS `exhibition` (
   `id` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
@@ -52,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `exhibition` (
 -- Table structure for table `link`
 --
 
+DROP TABLE IF EXISTS `link`;
 CREATE TABLE IF NOT EXISTS `link` (
   `id` int(11) NOT NULL,
   `url` text NOT NULL,
@@ -65,6 +68,7 @@ CREATE TABLE IF NOT EXISTS `link` (
 -- Table structure for table `news`
 --
 
+DROP TABLE IF EXISTS `news`;
 CREATE TABLE IF NOT EXISTS `news` (
   `text` text NOT NULL,
   `link` varchar(100) NOT NULL
@@ -76,6 +80,7 @@ CREATE TABLE IF NOT EXISTS `news` (
 -- Table structure for table `page`
 --
 
+DROP TABLE IF EXISTS `page`;
 CREATE TABLE IF NOT EXISTS `page` (
   `id` varchar(50) NOT NULL,
   `active` tinyint(1) NOT NULL,
@@ -100,6 +105,7 @@ INSERT INTO `page` (`id`, `active`) VALUES
 -- Table structure for table `publication`
 --
 
+DROP TABLE IF EXISTS `publication`;
 CREATE TABLE IF NOT EXISTS `publication` (
   `id` int(11) NOT NULL,
   `category` int(11) NOT NULL,
@@ -113,22 +119,10 @@ CREATE TABLE IF NOT EXISTS `publication` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `topic`
---
-
-CREATE TABLE IF NOT EXISTS `topic` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `description` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `work`
 --
 
+DROP TABLE IF EXISTS `work`;
 CREATE TABLE IF NOT EXISTS `work` (
   `id` int(11) NOT NULL,
   `topic` int(11) NOT NULL,
@@ -139,6 +133,21 @@ CREATE TABLE IF NOT EXISTS `work` (
   UNIQUE KEY `id` (`id`,`topic`),
   KEY `topic` (`topic`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `topic`
+--
+
+DROP TABLE IF EXISTS `topic`;
+CREATE TABLE IF NOT EXISTS `topic` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 --
 -- Constraints for dumped tables

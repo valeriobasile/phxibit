@@ -4,8 +4,8 @@ if (isset($_GET["category"])){
 	$id = $_GET["category"];
 
 	$sql = "select * from category where id = ".$id.";";
-	$result = mysql_query($sql) or die (mysql_error());
-	$row = mysql_fetch_assoc($result);
+	$result = $dbh->query($sql);
+	$row = $result->fetch();
 	$name = $row["name"];
 ?>
 <form action="confirmUpdateCategory.php" method="post" />

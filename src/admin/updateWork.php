@@ -5,8 +5,8 @@ if (isset($_GET["topic"]) && isset($_GET["work"])){
 	$id_work = $_GET["work"];
 
 	$sql = "select * from work where topic = ".$id_topic." and id = ".$id_work.";";
-	$result = mysql_query($sql) or die (mysql_error());
-	$row = mysql_fetch_assoc($result);
+	$result = $dbh->query($sql);
+	$row = $result->fetch();
 	$title = $row["title"];
 	$description = $row["description"];
 	$vimeo_url = $row["vimeo_url"];

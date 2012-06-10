@@ -4,8 +4,8 @@ if (isset($_GET["link"])){
 	$id = $_GET["link"];
 
 	$sql = "select * from link where id = ".$id.";";
-	$result = mysql_query($sql) or die (mysql_error());
-	$row = mysql_fetch_assoc($result);
+	$result = $dbh->query($sql);
+	$row = $result->fetch();
 	$url = $row["url"];
 	$description = $row["description"];
 ?>

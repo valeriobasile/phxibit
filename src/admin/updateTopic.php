@@ -4,8 +4,8 @@ if (isset($_GET["topic"])){
 	$id = $_GET["topic"];
 
 	$sql = "select * from topic where id = ".$id.";";
-	$result = mysql_query($sql) or die (mysql_error());
-	$row = mysql_fetch_assoc($result);
+	$result = $dbh->query($sql);
+	$row = $result->fetch();
 	$name = $row["name"];
 	$description = $row["description"];
 ?>

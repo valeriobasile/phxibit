@@ -1,4 +1,4 @@
-<?php include("mysql.php");?>
+<?php include("db.php");?>
 <?php
 if (isset($_POST["title"])){
 	$title = $_POST["title"];
@@ -15,15 +15,15 @@ else {
 }
 
 $sql = "select max(id) as max_id from exhibition;";
-$result = mysql_query($sql) or die (mysql_error());
-$row = mysql_fetch_assoc($result);
+$result = $dbh->query($sql);
+$row = $result->fetch();
 $max_id = $row["max_id"];
 $new_id = $max_id + 1;
 
 $sql = "insert into exhibition(id, title, description) values (\"".$new_id."\", \"".$title."\", \"".$description."\");";
-$result = mysql_query($sql) or die (mysql_error());
+$result = $dbh->query($sql);
 
-mysql_close();
+$dbh = null;
 
 $picture_dir = "../exhibitions/";
 copy($picture_dir."dummy.jpg", $picture_dir.$new_id.".jpg");

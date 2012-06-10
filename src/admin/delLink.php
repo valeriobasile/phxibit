@@ -1,21 +1,21 @@
-<?php include("mysql.php");?>
+<?php include("db.php");?>
 <?php
 if (isset($_GET["link"])){
 	$id = $_GET["link"];
 
 	$sql = "delete from link where id = ".$id.";";
-	mysql_query($sql) or die (mysql_error());
+	$dbh->query($sql);
 	
 	$sql = "select id from link where id > ".$id." order by id;";
-	$result = mysql_query($sql) or die (mysql_error());
-	while ($row = mysql_fetch_assoc($result)){
+	$result = $dbh->query($sql);
+	while ($row = $result->fetch()){
 		$old_id = $row["id"];
 		$new_id = $row["id"] - 1;
 		$sql = "update link set id = ".$new_id." where id = ".$old_id.";";
-		mysql_query($sql) or die (mysql_error());
+		$dbh->query($sql);
 	}
 
 }
-mysql_close();
+$dbh = null;
 header("location:links.php");
 ?>

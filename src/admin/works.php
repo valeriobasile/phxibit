@@ -1,7 +1,7 @@
 <?php include("header.php");?>
 <?php
 $sql = "select * from topic order by id;";
-$result = mysql_query($sql) or die (mysql_error());
+$result = $dbh->query($sql);
 ?>
 <div class="box">
 <h1>Topic</h1>
@@ -18,7 +18,7 @@ $result = mysql_query($sql) or die (mysql_error());
 </thead>
 <tbody>
 <?php
-while ($row = mysql_fetch_assoc($result)){
+foreach ($result as $row){
 ?>
 <tr>
 <td><a href="works.php?topic=<?=$row["id"]?>"><?=$row["name"]?></a></td>
@@ -47,10 +47,10 @@ while ($row = mysql_fetch_assoc($result)){
 
 if (isset($_GET["topic"])){
 	$sql = "select name from topic where id = \"".$_GET["topic"]."\";";
-	$result = mysql_query($sql) or die (mysql_error());
-	$row = mysql_fetch_assoc($result);
-	$topic_id = $_GET["topic"];
-	$topic_name = $row["name"];
+	$result = $dbh->query($sql);
+	$row = $result->fetch();
+    $topic_id = $_GET["topic"];
+    $topic_name = $row["name"];
 }
 else{
 	$topic_id = -1;
@@ -59,7 +59,7 @@ else{
 
 if ($topic_name != ""){
 $sql = "select id, title, description, vimeo_url from work where topic = ".$topic_id." order by id;";
-$result = mysql_query($sql) or die (mysql_error());
+$result = $dbh->query($sql);
 ?>
 <div class="box">
 <h1>Works</h1>
@@ -78,7 +78,7 @@ $result = mysql_query($sql) or die (mysql_error());
 </thead>
 <tbody>
 <?php
-while ($row = mysql_fetch_assoc($result)){
+foreach ($result as $row){
 ?>
 <tr>
 <td><?=$row["title"]?></td>

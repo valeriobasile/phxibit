@@ -3,8 +3,8 @@
 <h1>News</h1>
 <?php
 $sql = "select * from news;";
-$result = mysql_query($sql) or die (mysql_error());
-$row = mysql_fetch_assoc($result);
+$result = $dbh->query($sql);
+$row = $result->fetch();
 $text = $row["text"];
 $link = $row["link"];
 ?>
