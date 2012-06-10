@@ -18,7 +18,7 @@ $result = $dbh->query($sql);
 </thead>
 <tbody>
 <?php
-foreach ($result as $row){
+while ($row = $result->fetch()){
 ?>
 <tr>
 <td><a href="works.php?topic=<?=$row["id"]?>"><?=$row["name"]?></a></td>
@@ -78,7 +78,8 @@ $result = $dbh->query($sql);
 </thead>
 <tbody>
 <?php
-foreach ($result as $row){
+if ($result) {
+while ($row = $result->fetch()){
 ?>
 <tr>
 <td><?=$row["title"]?></td>
@@ -119,6 +120,7 @@ else {
 <td align="center"><a href="upWork.php?topic=<?=$topic_id?>&work=<?=$row["id"]?>"><img src="<?=$config['admin_icons_dir']?>/down.png" /></a></td>
 </tr>
 <?php
+}
 }
 ?>
 </tbody>

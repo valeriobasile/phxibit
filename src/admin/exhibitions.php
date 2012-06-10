@@ -45,7 +45,7 @@ echo '<img width="100px" src="../exhibitions/'.$row["id"].'.jpg?' , time() , '" 
 <td align="center">
 <input type="image" src="<?=$config['admin_icons_dir']?>/update.png" onclick="window.location='updateExhibition.php?topic=<?=$topic_id?>&exhibition=<?=$row["id"]?>';" />
 </td>
-<td align="center"><input type="image" src="<?=$config['admin_icons_dir']?>/delete.png" onclick="if(confirm('Delete exhibition <?=addslashes(str_replace("\"", "&quot;", $row["title"]))?>?')) window.location='delExhibition.php?topic=<?=$topic_id?>&exhibition=<?=$row["id"]?>';"/></td>
+<td align="center"><input type="image" src="<?=$config['admin_icons_dir']?>/delete.png" onclick="if(confirm('Delete exhibition <?=addslashes(str_replace("\"", "&quot;", $row["title"]))?>?')) window.location='delExhibition.php?exhibition=<?=$row["id"]?>';"/></td>
 <td align="center"><a href="downExhibition.php?exhibition=<?=$row["id"]?>"><img src="<?=$config['admin_icons_dir']?>/up.png" /></a></td>
 <td align="center"><a href="upExhibition.php?exhibition=<?=$row["id"]?>"><img src="<?=$config['admin_icons_dir']?>/down.png" /></a></td>
 </tr>

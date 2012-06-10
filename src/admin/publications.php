@@ -76,6 +76,7 @@ $result = $dbh->query($sql);
 </thead>
 <tbody>
 <?php
+if ($result) {
 while ($row = $result->fetch()){
 ?>
 <tr>
@@ -106,6 +107,7 @@ echo '<img width="100px" src="../publications/'.$category_id.'-'.$row["id"].'.jp
 <td align="center"><a href="upPublication.php?category=<?=$category_id?>&publication=<?=$row["id"]?>"><img src="<?=$config['admin_icons_dir']?>/down.png" /></a></td>
 </tr>
 <?php
+}
 }
 ?>
 </tbody>

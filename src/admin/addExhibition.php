@@ -25,8 +25,8 @@ $result = $dbh->query($sql);
 
 $dbh = null;
 
-$picture_dir = "../exhibitions/";
-copy($picture_dir."dummy.jpg", $picture_dir.$new_id.".jpg");
+$picture_dir = "../".$config["exhibitions_dir"]."/";
+copy($picture_dir."dummy.jpg", $picture_dir.$new_id.".jpg") or die;
 
 header("Location: exhibitions.php");
 ?>
