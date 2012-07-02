@@ -1,0 +1,25 @@
+PHXibit is a lightweight, easy-to-use, CMS (content 
+management system) with an eye towards artists.
+
+PHXibit allows its users to build and mantain a
+website to show works, exhibitions, publication and
+more, without the hassle of writing a single line
+of programming code.
+
+Installing PHXibit is easy:
+1) copy the index.php file and the install directory
+in your hosting, e.g. in a directory called "phxibit"
+under the ftp root directory;
+2) go with you browser to the corresponding URL,
+e.g. http://www.awesomeartist.net/phxibit;
+3) fill in the required fields in the installation form
+and click the "create" button. For most of the fields
+the default value will work just fine.
+Voila', you just created your PHXibit website.
+
+To manage the contents and the appearance of your website,
+go to the administration panel, e.g.
+http://www.awesomeartist.net/phxibit/admin using the password
+chosen in the previous step.
+
+
