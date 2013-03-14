@@ -38,7 +38,11 @@ function create_sqlite_schema($dbh, $schema_file){
     try{
         $sql = file_get_contents($schema_file);
         foreach (explode(";", $sql) as $statement){
-            $dbh->exec($statement);
+			$sth = $dbh->prepare($statement);
+			if (!$sth) {
+				die ($statement);
+			}
+			$sth->execute();
         }
         return True;
     }
@@ -120,10 +124,12 @@ function make_clean($post){
 
 }
 
-function write_ini_file($assoc_arr, $path, $has_sections=FALSE) { 
-    $content = ""; 
+function write_ini_file($assoc_arr, $path, $has_sections=FALSE) {
+	$content = ""; 
     if ($has_sections) { 
-        foreach ($assoc_arr as $key=>$elem) { 
+        foreach ($assoc_arr as $key=>$elem) {
+			if ($key == 'admin_password')
+				$elem = md5($elem);
             $content .= "[".$key."]\n"; 
             foreach ($elem as $key2=>$elem2) { 
                 if(is_array($elem2)) 
@@ -140,6 +146,8 @@ function write_ini_file($assoc_arr, $path, $has_sections=FALSE) {
     } 
     else { 
         foreach ($assoc_arr as $key=>$elem) { 
+			if ($key == 'admin_password')
+				$elem = md5($elem);
             if(is_array($elem)) 
             { 
                 for($i=0;$i<count($elem);$i++) 
@@ -190,5 +198,3 @@ function full_copy( $source, $target ) {
 	return True;
 }
 ?>
-
-

@@ -1,8 +1,11 @@
 <?php
+ini_set('display_errors',1);
+ini_set('display_startup_errors',1);
+error_reporting(-1);
 require_once("functions.php");
 require_once("defaults.php");
 require_once("checks.php");
-
+#error_reporting(E_ALL);
 # field values (from POST or from defaults.php)
 $values = array();
 
@@ -47,6 +50,7 @@ make_input($values, "icon_next", "\"Next\" icon file");
 make_input($values, "publications_dir", "\"Publication\" images directory");
 make_input($values, "works_dir", "\"Work\" images directory");
 make_input($values, "exhibitions_dir", "\"Exhibition\" images directory");
+make_input($values, "admin_icons_dir", "\"Admin\" icons directory");
 ?>
 
 

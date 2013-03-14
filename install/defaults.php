@@ -13,6 +13,7 @@ $defaults["icon_next"]="next.png";
 $defaults["publications_dir"]="publications";
 $defaults["works_dir"]="works";
 $defaults["exhibitions_dir"]="exhibitions";
+$defaults["admin_icons_dir"]="icons";
 
 $defaults["text_prev"]="";
 $defaults["text_next"]="";

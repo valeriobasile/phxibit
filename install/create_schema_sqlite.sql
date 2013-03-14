@@ -7,14 +7,6 @@
 -- Server version: 5.5.22
 -- PHP Version: 5.3.10-1ubuntu3.1
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: phxibit
@@ -27,8 +19,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE category (
-  id int(11) NOT NULL,
-  name text NOT NULL,
+  id int(11),
+  name text,
   PRIMARY KEY (id)
 );
 
@@ -39,9 +31,9 @@ CREATE TABLE category (
 --
 
 CREATE TABLE exhibition (
-  id int(11) NOT NULL,
-  title varchar(100) NOT NULL,
-  description text NOT NULL,
+  id int(11),
+  title varchar(100),
+  description text,
   PRIMARY KEY (id)
 );
 
@@ -53,9 +45,9 @@ CREATE TABLE exhibition (
 --
 
 CREATE TABLE link (
-  id int(11) NOT NULL,
-  url text NOT NULL,
-  description text NOT NULL,
+  id int(11),
+  url text,
+  description text,
   PRIMARY KEY (id)
 );
 
@@ -66,8 +58,8 @@ CREATE TABLE link (
 --
 
 CREATE TABLE news (
-  text text NOT NULL,
-  link varchar(100) NOT NULL
+  text text,
+  link varchar(100)
 );
 
 -- --------------------------------------------------------
@@ -77,8 +69,8 @@ CREATE TABLE news (
 --
 
 CREATE TABLE page (
-  id varchar(50) NOT NULL,
-  active tinyint(1) NOT NULL,
+  id varchar(50),
+  active tinyint(1),
   PRIMARY KEY (id)
 );
 
@@ -100,11 +92,11 @@ INSERT INTO page (id, active) VALUES ('works', 1);
 --
 
 CREATE TABLE publication (
-  id int(11) NOT NULL,
-  category int(11) NOT NULL,
-  title text NOT NULL,
-  description text NOT NULL,
-  text text NOT NULL,
+  id int(11),
+  category int(11),
+  title text,
+  description text,
+  text text,
   PRIMARY KEY (id,category)
 );
 
@@ -115,11 +107,11 @@ CREATE TABLE publication (
 --
 
 CREATE TABLE work (
-  id int(11) NOT NULL,
-  topic int(11) NOT NULL,
-  title varchar(100) NOT NULL,
-  description text NOT NULL,
-  vimeo_url varchar(100) NOT NULL,
+  id int(11),
+  topic int(11),
+  title varchar(100),
+  description text,
+  vimeo_url varchar(100),
   PRIMARY KEY (id,topic)
 );
 
@@ -130,9 +122,9 @@ CREATE TABLE work (
 --
 
 CREATE TABLE topic (
-  id int(11) NOT NULL,
-  name varchar(100) NOT NULL,
-  description text NOT NULL,
+  id int(11),
+  name varchar(100),
+  description text,
   PRIMARY KEY (id)
 );
 
