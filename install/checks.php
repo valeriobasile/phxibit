@@ -54,11 +54,6 @@ function make_checks($post){
         $errors[] = "Cannot create static directory";
     }
 
-    # copy style directory
-    if (!copy_dir("src/css", "../".$post["css_dir"])){
-        $errors[] = "Cannot create CSS directory";
-    }
-
     # SQLite database
     if ($post["db_engine"]=="sqlite"){
         if (!check_dir("../db")){

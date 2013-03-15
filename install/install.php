@@ -26,13 +26,28 @@ else {
 
 ?>
 
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-en" lang="en-en" >
 <head>
+<style>
+label {
+    text-align: right;
+    width: 30%;
+    padding-right:2em;
+}
+input {
+    text-align: left;
+    border: 0px;
+    border-bottom: 1px solid #000000;
+}
+body {
+    text-align: center;
+}
+</style>
 <title>PHXibit installation procedure</title>
 </head>
 <body>
 <form action="install.php" method="post">
-
 <h1>General</h1>
 <?
 make_input($values, "title", "Title of the website");
