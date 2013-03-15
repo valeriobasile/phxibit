@@ -6,6 +6,7 @@ $defaults["artist"]="John Doe";
 $defaults["email"]="john@doe.name";
 
 $defaults["img_dir"]="img";
+$defaults["css_dir"]="css";
 $defaults["logo_file"]="logo.png";
 $defaults["portrait_file"]="portrait.jpg";
 $defaults["icon_prev"]="prev.png";

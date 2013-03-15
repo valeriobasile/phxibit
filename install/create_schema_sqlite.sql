@@ -128,12 +128,18 @@ CREATE TABLE topic (
   PRIMARY KEY (id)
 );
 
+-- --------------------------------------------------------
 
 --
--- Constraints for dumped tables
+-- Table structure for table style
 --
 
+CREATE TABLE style (
+  background_color varchar(7),
+  text_color varchar(7),
+  link_color varchar(7),
+  font varchar(100)
+);
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+INSERT INTO style (background_color, text_color, link_color, font) VALUES ('#ffffff', '#000000', '#0044cc', 'Overlock');
+

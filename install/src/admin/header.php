@@ -19,9 +19,15 @@ include("db.php");
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-it" lang="it-it" >
 <head>
 <title><?=$config['title']?> administration</title>
+<link href='http://fonts.googleapis.com/css?family=Lusitana' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Overlock' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Gentium+Basic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Seaweed+Script' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Advent+Pro' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="style_admin.css" />
 </head>
 <body>
+<a href="..">view site</a>
 <div id="menu">
 <a href="news.php">news</a>
 <a href="works.php">works</a>
@@ -29,6 +35,7 @@ include("db.php");
 <a href="publications.php">publications</a>
 <a href="links.php">links</a>
 <a href="static.php">static content</a>
-<a href="pages.php">active pages</a></div>
+<a href="pages.php">active pages</a>
+<a href="style.php">style</a></div>
 <div id="main">
 

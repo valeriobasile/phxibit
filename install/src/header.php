@@ -17,6 +17,11 @@ while ($row = $result->fetch()){
 <head>
 <title><?=$config['title']?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href='http://fonts.googleapis.com/css?family=Lusitana' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Overlock' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Gentium+Basic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Seaweed+Script' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Advent+Pro' rel='stylesheet' type='text/css'>
 <link href="css/phxibit.css" rel="stylesheet" type="text/css">
 </head>
 <body>

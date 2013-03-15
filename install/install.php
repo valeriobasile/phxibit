@@ -53,6 +53,10 @@ make_input($values, "exhibitions_dir", "\"Exhibition\" images directory");
 make_input($values, "admin_icons_dir", "\"Admin\" icons directory");
 ?>
 
+<h1>Style directory</h1>
+<?
+make_input($values, "css_dir", "Cascading stylesheet directory");
+?>
 
 <h1>Navigation</h1>
 <?
