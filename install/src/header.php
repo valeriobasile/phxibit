@@ -22,7 +22,7 @@ while ($row = $result->fetch()){
 <link href='http://fonts.googleapis.com/css?family=Gentium+Basic' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Seaweed+Script' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Advent+Pro' rel='stylesheet' type='text/css'>
-<link href="css/phxibit.css" rel="stylesheet" type="text/css">
+<link href="style.php" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="header">

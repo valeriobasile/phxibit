@@ -1,4 +1,7 @@
-<?php include("header.php");?>
+<?php
+include("header.php");
+include("db.php");
+?>
 <div class="box">
 <h1>News</h1>
 <?php

@@ -62,6 +62,7 @@ CREATE TABLE news (
   link varchar(100)
 );
 
+INSERT INTO news (text, link) VALUES ('', '');
 -- --------------------------------------------------------
 
 --
