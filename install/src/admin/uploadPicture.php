@@ -1,10 +1,12 @@
 <?php
+$config = parse_ini_file('../config/config.ini');
+
 if (isset($_POST["topic"]) && isset($_POST["work"])){
 	$id_topic = $_POST["topic"];
 	$id_work = $_POST["work"];
 
-	define("UPLOAD_DIR", "../works/");
-
+	define("UPLOAD_DIR", "../".$config["works_dir"]."/");
+    
 	if(isset($_POST['action']) and $_POST['action'] == 'upload'){
 	    if(isset($_FILES['user_file'])){
 	        $file = $_FILES['user_file'];

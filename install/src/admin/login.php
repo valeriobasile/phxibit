@@ -8,7 +8,7 @@ if (isset($_POST["admin_password"])){
 }
 
 # if not logged in, show login form
-if ($config["admin_password"] != $_SESSION["admin_password"]) {
+if (!isset($_SESSION["admin_password"]) || $config["admin_password"] != $_SESSION["admin_password"]) {
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it-it" lang="it-it" >

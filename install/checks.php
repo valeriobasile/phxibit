@@ -39,14 +39,14 @@ function make_checks($post){
     }
     
     # create image directories
-    if (!check_dir("../".$post["publications_dir"])){
-        $errors[] = "publications images directory ".$post["publications_dir"]." is not writable";
+    if (!copy_dir("src/".$post["publications_dir"], "../".$post["publications_dir"])){
+        $errors[] = "Cannot copy publications directory";
     }
-    if (!check_dir("../".$post["works_dir"])){
-        $errors[] = "works images directory ".$post["works_dir"]." is not writable";
+    if (!copy_dir("src/".$post["works_dir"], "../".$post["works_dir"])){
+        $errors[] = "Cannot copy works directory";
     }
-    if (!check_dir("../".$post["exhibitions_dir"])){
-        $errors[] = "exhibitions images directory ".$post["exhibitions_dir"]." is not writable";
+    if (!copy_dir("src/".$post["exhibitions_dir"], "../".$post["exhibitions_dir"])){
+        $errors[] = "Cannot copy exhibitions directory";
     }
     
     # copy static files directory

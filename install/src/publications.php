@@ -1,5 +1,6 @@
 <?php
 include("header.php");
+include("db.php");
 
 function get_next_category($id_category, $id_publication, $last_publication_in_category){
 	if($id_publication == $last_publication_in_category)
@@ -24,7 +25,7 @@ function get_next_publication($id_publication, $last_publication_in_category){
 	}
 }
 
-function get_prev_publication($id_publication, $last_category){
+function get_prev_publication($id_publication, $last_category, $dbh){
 	if($id_publication == "1"){
 		$sql = "select max(id) as max from publication where category=".$last_category."-1;";
 		$result = $dbh->query($sql);
@@ -132,12 +133,11 @@ echo str_replace("\n", "<br />\n", $row["text"]);
 if($id_category=="1" && $id_publication=="1"){
 ?>
 <img src="<?=$config['img_dir'].'/'.$config['icon_prev']?>" />
-<?=$config['text_previous']?>
+<?=$config['text_prev']?>
 <?=$id_publication?>/<?=$count_publications?>
 <a href="publications.php?category=<?=get_next_category($id_category, $id_publication, $last_publication_in_category)?>&publication=<?=get_next_publication($id_publication, $last_publication_in_category);?>">
 <?=$config['text_next']?>
-</a>
-<a href="publications.php?category=<?=get_next_category($id_category, $id_publication, $last_publication_in_category)?>&publication=<?=get_next_publication($id_publication, $last_publication_in_category);?>">
+</a><a href="publications.php?category=<?=get_next_category($id_category, $id_publication, $last_publication_in_category)?>&publication=<?=get_next_publication($id_publication, $last_publication_in_category);?>">
 <img src="<?=$config['img_dir'].'/'.$config['icon_next']?>" />
 </a>
 
@@ -146,11 +146,10 @@ if($id_category=="1" && $id_publication=="1"){
 #last category, last publication
 elseif($id_category==$last_category && $id_publication==$last_publication){
 ?>
-<a href="publications.php?category=<?=get_prev_category($id_category, $id_publication)?>&publication=<?=get_prev_publication($id_publication, $id_category)?>">
+<a href="publications.php?category=<?=get_prev_category($id_category, $id_publication)?>&publication=<?=get_prev_publication($id_publication, $id_category, $dbh)?>">
 <img src="<?=$config['img_dir'].'/'.$config['icon_prev']?>" />
-</a>
-<a href="publications.php?category=<?=get_prev_category($id_category, $id_publication)?>&publication=<?=get_prev_publication($id_publication, $id_category)?>">
-<?=$config['text_previous']?>
+</a><a href="publications.php?category=<?=get_prev_category($id_category, $id_publication)?>&publication=<?=get_prev_publication($id_publication, $id_category, $dbh)?>">
+<?=$config['text_prev']?>
 </a>
 <?=$id_publication?>/<?=$count_publications?>
 <?=$config['text_next']?>
@@ -161,17 +160,15 @@ elseif($id_category==$last_category && $id_publication==$last_publication){
 # normal
 else{
 ?>
-<a href="publications.php?category=<?=get_prev_category($id_category, $id_publication)?>&publication=<?=get_prev_publication($id_publication, $id_category)?>">
+<a href="publications.php?category=<?=get_prev_category($id_category, $id_publication)?>&publication=<?=get_prev_publication($id_publication, $id_category, $dbh)?>">
 <img src="<?=$config['img_dir'].'/'.$config['icon_prev']?>" />
-</a>
-<a href="publications.php?category=<?=get_prev_category($id_category, $id_publication)?>&publication=<?=get_prev_publication($id_publication, $id_category)?>">
-<?=$config['text_previous']?>
+</a><a href="publications.php?category=<?=get_prev_category($id_category, $id_publication)?>&publication=<?=get_prev_publication($id_publication, $id_category, $dbh)?>">
+<?=$config['text_prev']?>
 </a>
 <?=$id_publication?>/<?=$count_publications?>
 <a href="publications.php?category=<?=get_next_category($id_category, $id_publication, $last_publication_in_category)?>&publication=<?=get_next_publication($id_publication, $last_publication_in_category);?>">
 <?=$config['text_next']?>
-</a>
-<a href="publications.php?category=<?=get_next_category($id_category, $id_publication, $last_publication_in_category)?>&publication=<?=get_next_publication($id_publication, $last_publication_in_category);?>">
+</a><a href="publications.php?category=<?=get_next_category($id_category, $id_publication, $last_publication_in_category)?>&publication=<?=get_next_publication($id_publication, $last_publication_in_category);?>">
 <img src="<?=$config['img_dir'].'/'.$config['icon_next']?>" />
 </a>
 

@@ -27,7 +27,7 @@ function get_next_work($id_work, $last_work_in_topic){
 	}
 }
 
-function get_prev_work($id_work, $last_topic){
+function get_prev_work($id_work, $last_topic, $dbh){
 	if($id_work == "1"){
 		$tmp = $last_topic-1;
 		$sql = "select max(id) as max from work where topic=".$tmp.";";
@@ -154,17 +154,14 @@ echo str_replace("\n", "<br />\n", $row["description"]);
 <? # navigation ?>
 <div id="works_navigation_arrows">
 <?
-
 #first topic, first work
 if($id_topic=="1" && $id_work=="1"){
 ?>
 <img src="<?=$config['img_dir'].'/'.$config['icon_prev']?>" />
-<?=$config['text_prev']?>
-<?=$id_work?>/<?=$count_works?>
+<?=$config['text_prev']?><?=$id_work?>/<?=$count_works?>
 <a href="works.php?topic=<?=get_next_topic($id_topic, $id_work, $last_work_in_topic)?>&work=<?=get_next_work($id_work, $last_work_in_topic);?>">
 <?=$config['text_next']?>
-</a>
-<a href="works.php?topic=<?=get_next_topic($id_topic, $id_work, $last_work_in_topic)?>&work=<?=get_next_work($id_work, $last_work_in_topic);?>">
+</a><a href="works.php?topic=<?=get_next_topic($id_topic, $id_work, $last_work_in_topic)?>&work=<?=get_next_work($id_work, $last_work_in_topic);?>">
 <img src="<?=$config['img_dir'].'/'.$config['icon_next']?>" />
 </a>
 
@@ -173,13 +170,11 @@ if($id_topic=="1" && $id_work=="1"){
 #last topic, last work
 elseif($id_topic==$last_topic && $id_work==$last_work){
 ?>
-<a href="works.php?topic=<?=get_prev_topic($id_topic, $id_work)?>&work=<?=get_prev_work($id_work, $id_topic)?>">
+<a href="works.php?topic=<?=get_prev_topic($id_topic, $id_work)?>&work=<?=get_prev_work($id_work, $id_topic, $dbh)?>">
 <img src="<?=$config['img_dir'].'/'.$config['icon_prev']?>" />
-</a>
-<a href="works.php?topic=<?=get_prev_topic($id_topic, $id_work)?>&work=<?=get_prev_work($id_work, $id_topic)?>">
+</a><a href="works.php?topic=<?=get_prev_topic($id_topic, $id_work)?>&work=<?=get_prev_work($id_work, $id_topic, $dbh)?>">
 <?=$config['text_prev']?>
-</a>
-<?=$id_work?>/<?=$count_works?>
+</a><?=$id_work?>/<?=$count_works?>
 <?=$config['text_next']?>
 <img src="<?=$config['img_dir'].'/'.$config['icon_next']?>" />
 <?
@@ -188,13 +183,10 @@ elseif($id_topic==$last_topic && $id_work==$last_work){
 # normal
 else{
 ?>
-<a href="works.php?topic=<?=get_prev_topic($id_topic, $id_work)?>&work=<?=get_prev_work($id_work, $id_topic)?>">
+<a href="works.php?topic=<?=get_prev_topic($id_topic, $id_work)?>&work=<?=get_prev_work($id_work, $id_topic, $dbh)?>">
 <img src="<?=$config['img_dir'].'/'.$config['icon_prev']?>" />
-</a>
-<a href="works.php?topic=<?=get_prev_topic($id_topic, $id_work)?>&work=<?=get_prev_work($id_work, $id_topic)?>">
-<?=$config['text_prev']?>
-</a>
-<?=$id_work?>/<?=$count_works?>
+</a><a href="works.php?topic=<?=get_prev_topic($id_topic, $id_work)?>&work=<?=get_prev_work($id_work, $id_topic, $dbh)?>">
+<?=$config['text_prev']?></a><?=$id_work?>/<?=$count_works?>
 <a href="works.php?topic=<?=get_next_topic($id_topic, $id_work, $last_work_in_topic)?>&work=<?=get_next_work($id_work, $last_work_in_topic);?>">
 <?=$config['text_next']?>
 </a>
